@@ -1,4 +1,4 @@
-# <img alt="image" src='media/lady-gaga.png' height="30px"> *Gaga* : Group Any Gaussians via 3D-aware Memory Bank
+# <img alt="image" src='media/lady-gaga.png' height="25px"> *Gaga* : Group Any Gaussians via 3D-aware Memory Bank
 
 **Weijie Lyu, Xueting Li, Abhijit Kundu, Yi-Hsuan Tsai, Ming-Hsuan Yang**
 
@@ -34,7 +34,7 @@ https://github.com/weijielyu/Gaga/assets/47323245/f1099e6b-40e1-46af-9c14-f48076
 
 ### 🖌️ Scene Editing
 
-> ✨ Change the color of cushion on <img src="media/footstool.png" width="50"> to $\textcolor{maroon}{maroon}$;<br>
-> ✨ Remove <img src="media/stuffed.png" width="50">.
+> ✨ Change the color of cushion on <img src="media/footstool.png" width="50"> to maroon 🟥<br>
+> ✨ Remove <img src="media/stuffed.png" width="50">
 
 https://github.com/weijielyu/Gaga/assets/47323245/803f049f-8930-445c-bc1a-b8bb12df0fbf
