@@ -1,4 +1,4 @@
-# <img alt="image" src='media/lady-gaga.png' height="25px"> *Gaga* : Group Any Gaussians via 3D-aware Memory Bank
+# <img alt="image" src='media/lady-gaga.png' height="30px"> *Gaga*: Group Any Gaussians via 3D-aware Memory Bank
 
 **Weijie Lyu, Xueting Li, Abhijit Kundu, Yi-Hsuan Tsai, Ming-Hsuan Yang**
 
