@@ -4,9 +4,9 @@
 
 University of California, Merced - Nvidia - Google<br>
 
-![Static Badge](https://img.shields.io/badge/Website-Gaga?&logo=googlechrome&logoColor=hsl(204%2C%2086%25%2C%2053%25)&label=Gaga&labelColor=%23f5f5dc&color=hsl(204%2C%2086%25%2C%2053%25)&link=https%3A%2F%2Fwww.gaga.gallery)
-![Static Badge](https://img.shields.io/badge/Paper-arXiv?logo=arxiv&logoColor=%23B31B1B&label=arXiv&labelColor=%23f5f5dc&color=%23B31B1B&link=https%3A%2F%2Fwww.gaga.gallery)
-![Static Badge](https://img.shields.io/badge/Video-YouTube?logo=youtube&logoColor=%23FF0000&label=YouTube&labelColor=%23f5f5dc&color=%23FF0000&link=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Drqs5BuVFOok)
+[![Website](https://img.shields.io/badge/Website-Gaga?logo=googlechrome&logoColor=hsl(204%2C%2086%25%2C%2053%25)&label=Gaga&labelColor=%23f5f5dc&color=hsl(204%2C%2086%25%2C%2053%25))](https://www.gaga.gallery/)
+![Static Badge](https://img.shields.io/badge/Paper-arXiv?logo=arxiv&logoColor=%23B31B1B&label=arXiv&labelColor=%23f5f5dc&color=%23B31B1B)
+[![Static Badge](https://img.shields.io/badge/Video-YouTube?logo=youtube&logoColor=%23FF0000&label=YouTube&labelColor=%23f5f5dc&color=%23FF0000)](https://www.youtube.com/watch?v=rqs5BuVFOok)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fweijielyu%2FGaga&count_bg=%2379C83D&title_bg=%23F5F5DC&icon=github.svg&icon_color=%2379C83D&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
 <div align='center'>
