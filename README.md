@@ -4,7 +4,7 @@
 
 University of California, Merced - Nvidia - Google<br>
 
-[[Paper](https://github.com/weijielyu/Gaga_website/static/pdf/Gaga.pdf)]
+[[Paper](https://www.gaga.gallery/static/pdf/Gaga.pdf)]
 [[arXiv](https://github.com/weijielyu/Gaga)]
 [[Project Page](https://www.gaga.gallery)]
 [[Video](https://youtu.be/rqs5BuVFOok)]
