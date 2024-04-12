@@ -1,13 +1,12 @@
 # <img alt="image" src='media/lady-gaga.png' height="30px"> *Gaga* : Group Any Gaussians via 3D-aware Memory Bank
 
-**Weijie Lyu, Xueting Li, Abhijit Kundu, Yi-Hsuan Tsai, Ming-Hsuan Yang**
-
-University of California, Merced - Nvidia - Google<br>
+[Weijie Lyu](https://weijielyu.github.io/), [Xueting Li](https://sunshineatnoon.github.io/), [Abhijit Kundu](https://abhijitkundu.info/), [Yi-Hsuan Tsai](https://sites.google.com/site/yihsuantsai/), [Ming-Hsuan Yang](https://faculty.ucmerced.edu/mhyang/)<br>
+University of California, Merced - Nvidia - Google
 
 [![Website](https://img.shields.io/badge/Website-Gaga?logo=googlechrome&logoColor=hsl(204%2C%2086%25%2C%2053%25)&label=Gaga&labelColor=%23f5f5dc&color=hsl(204%2C%2086%25%2C%2053%25))](https://www.gaga.gallery/)
-![Static Badge](https://img.shields.io/badge/Paper-arXiv?logo=arxiv&logoColor=%23B31B1B&label=arXiv&labelColor=%23f5f5dc&color=%23B31B1B)
-[![Static Badge](https://img.shields.io/badge/Video-YouTube?logo=youtube&logoColor=%23FF0000&label=YouTube&labelColor=%23f5f5dc&color=%23FF0000)](https://www.youtube.com/watch?v=rqs5BuVFOok)
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fweijielyu%2FGaga&count_bg=%2379C83D&title_bg=%23F5F5DC&icon=github.svg&icon_color=%2379C83D&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+[![Paper](https://img.shields.io/badge/Paper-arXiv?logo=arxiv&logoColor=%23B31B1B&label=arXiv&labelColor=%23f5f5dc&color=%23B31B1B)](https://arxiv.org/abs/2404.07977)
+[![Video](https://img.shields.io/badge/Video-YouTube?logo=youtube&logoColor=%23FF0000&label=YouTube&labelColor=%23f5f5dc&color=%23FF0000)](https://www.youtube.com/watch?v=rqs5BuVFOok)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fweijielyu%2FGaga&count_bg=%2379C83D&title_bg=%23F5F5DC&icon=github.svg&icon_color=%2379C83D&title=🔎&edge_flat=false)](https://hits.seeyoufarm.com)
 
 <div align='center'>
 <img alt="image" src='media/teaser.png'>
@@ -39,17 +38,17 @@ https://github.com/weijielyu/Gaga/assets/47323245/f1099e6b-40e1-46af-9c14-f48076
 
 https://github.com/weijielyu/Gaga/assets/47323245/803f049f-8930-445c-bc1a-b8bb12df0fbf
 
-<!-- ## Citation
+## Citation
 
 If you find our work useful for your project, please consider citing our paper.
 
 ```
-@misc{zhu2023FSGS, 
-title={FSGS: Real-Time Few-Shot View Synthesis using Gaussian Splatting}, 
-author={Zehao Zhu and Zhiwen Fan and Yifan Jiang and Zhangyang Wang}, 
-year={2023},
-eprint={2312.00451},
-archivePrefix={arXiv},
-primaryClass={cs.CV} 
+@misc{lyu2024gaga,
+      title={Gaga: Group Any Gaussians via 3D-aware Memory Bank}, 
+      author={Weijie Lyu and Xueting Li and Abhijit Kundu and Yi-Hsuan Tsai and Ming-Hsuan Yang},
+      year={2024},
+      eprint={2404.07977},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
 }
-``` -->
+```
