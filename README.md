@@ -13,7 +13,8 @@ University of California, Merced - Nvidia - Google
 </div>
 
 > *Gaga* groups any Gaussians in an open-world 3D scene and renders multi-view consistent segmentation.<br>
-> Codes will be released soon.
+> Codes will be released soon.<br>
+> **If you need the codes now, please contact the first author via email (wlyu3@ucmerced.edu).**
 
 ## Results
 
