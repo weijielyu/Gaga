@@ -110,7 +110,7 @@ Gaga
     |-- ...
 ```
 
-### Step 1: Train vanilla Gaussian Splatting
+### Step 1: Train Vanilla Gaussian Splatting
 If you have pre-trained 3D Gaussians, place it in `{your_model_path}`.
 
 Otherwise, please refer to [Gaussian Splatting](https://github.com/graphdeco-inria/gaussian-splatting) to train 3D Gaussians.
