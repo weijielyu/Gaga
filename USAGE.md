@@ -21,9 +21,11 @@ pip install git+https://github.com/facebookresearch/segment-anything.git
 - Use EntitySeg.
 ```
 cd Gaga/mask
+
 # Install detectron 2 (https://detectron2.readthedocs.io/en/latest/tutorials/install.html)
 git clone https://github.com/facebookresearch/detectron2.git
 python -m pip install -e detectron2
+
 # Install EntitySeg
 git clone https://github.com/qqlu/Entity.git
 cp -r Entity/Entityv2/CropFormer/ detectron2/detectron2/projects/
