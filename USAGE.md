@@ -53,12 +53,12 @@ We use pre-rendered Replica dataset provided by [Semantic-NeRF](https://github.c
 
 Dropbox Link: `https://www.dropbox.com/sh/9yu1elddll00sdl/AAC-rSJdLX0C6HhKXGKMOIija?dl=0`.
 
-After downloading, unzip file with:
+After downloading, unzip the file with:
 ```
 sh data/replica/unzip_replica.sh {zip_file_path.zip} {unzip_file_path}
 ```
 
-Then process the Replica dataset with:
+Then, process the Replica dataset with:
 ```
 python data/process.py \
     --input_folder {unzip_file_path}/Replica_Dataset \
@@ -158,16 +158,16 @@ python lift.py \
     --source_path {your_dataset_path}/replica/office_0 \
     --model_path {your_output_path}/replica/office_0/sam \
     --trained_model_path {your_model_path}/replica/office_0 \
-    --object_path sam_mask    \
+    --object_path sam_mask \
     --eval
 
 python render.py -m {your_output_path}/replica/office_0/sam
 ```
 
-### Step 5 (Optional): Evaluaion on Replica and ScanNet Datasets
+### Step 5 (Optional): Evaluation on Replica and ScanNet Datasets
 ```
-python eval.py   \
-    --gt_masks {your_dataset_path}/replica/office_0/semantic_instance  \
+python eval.py \
+    --gt_masks {your_dataset_path}/replica/office_0/semantic_instance \
     --pred_masks {your_output_path}/replica/office_0/sam/test/ours_10000/objects_test
 ```
 
