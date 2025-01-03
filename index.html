@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Gaga groups any Gaussians in an open-world 3D scene and renders multi-view consistent segmentation.">
+  <meta name="keywords" content="Open-world 3D Segmentation, 3D Gaussians, Scene Understanding">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gaga: Group Any Gaussians via 3D-aware Memory Bank</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/style.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/lady-gaga.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/script.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            <i>Gaga</i> : Group Any Gaussians via 3D-aware Memory Bank
+          </h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://weijielyu.github.io/">Weijie Lyu</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://sunshineatnoon.github.io/">Xueting Li</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://abhijitkundu.info/">Abhijit Kundu</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://sites.google.com/site/yihsuantsai/">Yi-Hsuan Tsai</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://faculty.ucmerced.edu/mhyang/">Ming-Hsuan Yang</a><sup>1, 3</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of California, Merced </span>
+            <span class="author-block"><sup>2</sup>Nvidia </span>
+            <span class="author-block"><sup>3</sup>Google </span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/pdf/Gaga.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2404.07977"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://youtu.be/rqs5BuVFOok"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video (6' 29")</span>
+                </a>
+              </span>
+              <!-- Short Video Link. -->
+              <span class="link-block">
+                <a href="https://youtu.be/LTBjr7BcYa8"
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video (2' 20")</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/weijielyu/Gaga"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+          <!-- Submission Status. -->
+          <div class="title-row">
+            <span class="title is-4 publication-venue">arXiv 2024</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="switcher" data-switcher-title="Select Segmentation Model">
+            <div data-switcher-label="SAM"></div>
+            <div data-switcher-label="EntitySeg"></div>
+          </div>
+          <div id="image-compare-canvas" class="image-compare" data-before-label="RGB" data-after-label="Segmentation">
+            <canvas id="canvas"></canvas>
+          </div>
+          <div class="video-bar base-row">
+            <button id="play-btn" class="video-btn fa fa-lg fa-pause" onclick="play_pause()" style="margin-right: 0px;"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h2 class="subtitle has-text-centered">
+        <i>Gaga</i> groups any Gaussians in an open-world 3D scene and renders multi-view consistent segmentation.
+        We show 3D segmentation rendering results leveraging different 2D segmentation models, Segment Anything (SAM) and EntitySeg.
+    </h2>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We introduce <i>Gaga</i>, a framework that <b style="color:hsl(204, 86%, 53%)">reconstructs</b> 
+            and <b style="color:hsl(204, 86%, 53%)">segments</b> open-world 3D scenes 
+            by leveraging inconsistent 2D masks predicted by zero-shot segmentation models. Contrasted 
+            to prior 3D scene segmentation approaches that heavily rely on video object tracking, 
+            <i>Gaga</i> utilizes spatial information and effectively associates object masks across diverse camera 
+            poses. By eliminating the assumption of continuous view changes in training images, <i>Gaga</i> 
+            demonstrates robustness to variations in camera poses, particularly beneficial for sparsely 
+            sampled images, ensuring precise mask label consistency. Furthermore, <i>Gaga</i> accommodates 
+            2D segmentation masks from diverse sources and demonstrates robust performance with different 
+            open-world zero-shot segmentation models, significantly enhancing its versatility. 
+            Extensive qualitative and quantitative evaluations demonstrate that <i>Gaga</i> performs favorably against 
+            state-of-the-art methods, emphasizing its potential for real-world applications such as scene 
+            understanding and manipulation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Abstract. -->
+
+<!-- Paper Video. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/LTBjr7BcYa8?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Paper Video. -->
+
+<!-- Method. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <img src="static/images/overview.png" width="100%">
+            </div>
+          </div>
+          <p>
+            <strong>Overview of <i>Gaga</i>.</strong> <i>Gaga</i> reconstructs 3D scenes with Gaussian Splatting and
+            adopts an open-world model to generate 2D segmentation masks. To eliminate the 2D
+            mask label inconsistency, we design the <b style="color:hsl(204, 86%, 53%)">3D-aware mask association</b> process, 
+            where a 3D-aware memory bank is employed to 
+            assign a consistent group ID across different views to
+            each 2D mask based on the 3D Gaussians projected to that mask. Specifically,
+            we find the corresponding Gaussians projected to each 2D mask and assign the mask
+            with the group ID in the memory bank with the maximum overlapped Gaussians.
+            After the 3D-aware mask association process, we use masks with multi-view
+            consistent group IDs as pseudo labels to train an identity encoding on each 3D Gaussian
+            for segmentation rendering.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Method. -->
+
+<!-- Results. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Gallery</h2>
+        <h3 class="title is-4 has-text-centered">🗺️ Open-world 3D Segmentation</h3>
+        <p>
+          <i>Gaga</i> accommodates well with diverse open-world 2D segmentation models.
+        </p>
+        <h4 class="title is-5"></h4>
+        <h4 class="title is-5">🤝 EntitySeg</h4>
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080">RGB</b></h4>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080">Gaussian Grouping</b></h4>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080"><i>Gaga</i></b></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/kitchen_entity.mov" type="video/mp4">
+        </video>
+        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/room_0_entity.mov" type="video/mp4">
+        </video>
+        <h4 class="title is-5"></h4>
+        <h4 class="title is-5">🤝 SAM</h4>
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080">RGB</b></h4>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080">Gaussian Grouping</b></h4>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080"><i>Gaga</i></b></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/office_0_sam.mov" type="video/mp4">
+        </video>
+        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/room_sam.mov" type="video/mp4">
+        </video>
+        <h3 class="title is-4"></h3>
+        <h3 class="title is-4 has-text-centered">❓ Why 3D-aware</h3>
+        <p>
+          <i>Gaga</i> integrates spatial information to precisely locate objects and associate 2D masks, 
+          leading to multi-view consistent segmentation. 
+          While previous method without 3D-awareness struggles when encountering following scenarios:
+        </p>
+        <h4 class="title is-5"></h4>
+        <h4 class="title is-5">👯 Similar objects present in the scene</h4>
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080">RGB</b></h4>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080">Gaussian Grouping</b></h4>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080"><i>Gaga</i></b></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/scene_192_entity.mov" type="video/mp4">
+        </video>
+        <h4 class="title is-5"></h4>
+        <h4 class="title is-5">📷 Camera poses change significantly</h4>
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080">RGB</b></h4>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080">Gaussian Grouping</b></h4>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080"><i>Gaga</i></b></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/room_entity.mov" type="video/mp4">
+        </video>
+        <h4 class="title is-5"></h4>
+        <h4 class="title is-5">😭 Limited images are available (e.g., using only 9 training images)</h4>
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080">RGB</b></h4>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080">Gaussian Grouping</b></h4>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080"><i>Gaga</i></b></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/office_0_sam_sparse.mov" type="video/mp4">
+        </video>
+        <h3 class="title is-4"></h3>
+        <h3 class="title is-4 has-text-centered">🪄 Scene Editing</h3>
+        <p>
+          <i>Gaga</i> achieves high-quality and multi-view consistent 3D segmentation, enables tasks like scene editing.
+        </p>
+        <h4 class="title is-5"></h4>
+        <h4 class="title is-5">
+          ✨ Change the color of cushion on <img src="static/images/footstool.png" width="75"> to <b style="color:#800000">maroon</b>; remove <img src="static/images/stuffed.png" width="75">
+        </h4>
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080">Before Editing</b></h4>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080">Gaussian Grouping</b></h4>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080"><i>Gaga</i></b></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/room_app.mov" type="video/mp4">
+        </video>
+        </h4>
+        <h4 class="title is-5"></h4>
+        <h4 class="title is-5">
+          ✨ Move <img src="static/images/armchair.png" width="75"> closer to the window 👉
+        </h4>
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080">Before Editing</b></h4>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080">Gaussian Grouping</b></h4>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5 is-centered has-text-centered"><b style="color:#808080"><i>Gaga</i></b></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/office_3_app.mov" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Results. -->
+
+<!-- Citation. -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{lyu2024gaga,
+      title={Gaga: Group Any Gaussians via 3D-aware Memory Bank}, 
+      author={Weijie Lyu and Xueting Li and Abhijit Kundu and Yi-Hsuan Tsai and Ming-Hsuan Yang},
+      year={2024},
+      eprint={2404.07977},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}</code></pre>
+  </div>
+</section>
+<!--/ Citation. -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/pdf/Gaga.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/weijielyu" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website template from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and <a href="https://github.com/chungmin99/garfield-website">GARField</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<video id="teaser" controls="false" loop autoplay muted class="videos" webkit-playsinline playsinline>
+  <source src="static/videos/teaser.mov" type="video/mp4">
+</video>
+
+</body>
+</html>
