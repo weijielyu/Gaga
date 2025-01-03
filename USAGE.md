@@ -68,7 +68,7 @@ python data/process.py \
 The processed Replica dataset will be in `{your_dataset_path}/replica`.
 
 ### ScanNet
-Download ScanNet dataset here: `http://www.scan-net.org/`.
+Download ScanNet dataset [here](http://www.scan-net.org/).
 
 After downloading, process the ScanNet dataset with:
 ```
