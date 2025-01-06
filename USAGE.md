@@ -35,7 +35,7 @@ make
 
 Download model checkpoint [here](https://huggingface.co/datasets/qqlu1992/Adobe_EntitySeg/tree/main/CropFormer_model/Entity_Segmentation/CropFormer_hornet_3x).
 
-You can also refer to [EntitySeg Github Repo](https://github.com/qqlu/Entity/blob/main/Entityv2/CODE.md) for usage.
+You can also refer to [EntitySeg GitHub Repo](https://github.com/qqlu/Entity/blob/main/Entityv2/CODE.md) for usage.
 
 After downloading the model ckpts, please modify the paths in `mask/config.json` to accommodate your setting.
 
