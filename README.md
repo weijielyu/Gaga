@@ -1,4 +1,4 @@
-# <img alt="image" src='media/lady-gaga.png' height="30px"> *Gaga* : Group Any Gaussians via 3D-aware Memory Bank
+# <img alt="image" src='media/lady-gaga.png' height="30px"> Gaga: Group Any Gaussians via 3D-aware Memory Bank
 
 [Weijie Lyu](https://weijielyu.github.io/), [Xueting Li](https://sunshineatnoon.github.io/), [Abhijit Kundu](https://abhijitkundu.info/), [Yi-Hsuan Tsai](https://sites.google.com/site/yihsuantsai/), [Ming-Hsuan Yang](https://faculty.ucmerced.edu/mhyang/)<br>
 University of California, Merced - Nvidia - Google
