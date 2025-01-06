@@ -191,6 +191,8 @@ Our codes are based on the following GitHub repos. Thanks for their wonderful im
 
 - Gaussian Splatting: https://github.com/graphdeco-inria/gaussian-splatting
 - Gaussian Grouping: https://github.com/lkeab/gaussian-grouping
+- Segment Anything: https://github.com/facebookresearch/segment-anything
+- Entity Seg: https://github.com/qqlu/Entity
 - FSGS: https://github.com/VITA-Group/FSGS
 - Semantic-NeRF: https://github.com/Harry-Zhi/semantic_nerf
 - DM-NeRF: https://github.com/vLAR-group/DM-NeRF
