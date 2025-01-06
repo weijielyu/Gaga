@@ -188,10 +188,9 @@ We will update this part soon. Meanwhile you can refer to [Gaussian Grouping](ht
 ## Acknowledgement
 
 Our codes are based on the following GitHub repos. Thanks for their wonderful implementations!
-```
-https://github.com/graphdeco-inria/gaussian-splatting
-https://github.com/lkeab/gaussian-grouping
-https://github.com/VITA-Group/FSGS
-https://github.com/Harry-Zhi/semantic_nerf
-https://github.com/vLAR-group/DM-NeRF
-```
+
+- Gaussian Splatting: https://github.com/graphdeco-inria/gaussian-splatting
+- Gaussian Grouping: https://github.com/lkeab/gaussian-grouping
+- FSGS: https://github.com/VITA-Group/FSGS
+- Semantic-NeRF: https://github.com/Harry-Zhi/semantic_nerf
+- DM-NeRF: https://github.com/vLAR-group/DM-NeRF
