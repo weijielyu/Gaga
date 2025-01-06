@@ -171,6 +171,9 @@ python eval.py \
     --pred_masks {your_output_path}/replica/office_0/sam/test/ours_10000/objects_test
 ```
 
+## Application: Scene Editing
+We will update this part soon. Meanwhile you can refer to [Gaussian Grouping](https://github.com/lkeab/gaussian-grouping/blob/main/docs/edit_removal_inpaint.md) for instructions on object removal and inpaint. For other editing tasks, you can find the necessary functions [here](https://github.com/weijielyu/Gaga/blob/main/scene/gaussian_model.py).
+
 ## Acknowledgement
 
 Our codes are based on the following GitHub repos. Thanks for their wonderful implementations!

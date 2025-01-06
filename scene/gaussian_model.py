@@ -550,7 +550,7 @@ class GaussianModel:
             for idx in range(self.num_objects):
                 objects_dc[:,idx,0] = np.asarray(plydata.elements[0]["obj_dc_"+str(idx)])
         except:
-            print("[WARNING] Loading pre-trained Original Gaussian Splatting, not Gaussian Grouping")
+            print("[WARNING] Loading pre-trained Original Gaussian Splatting without identity encoding features.")
 
         self._xyz = nn.Parameter(torch.tensor(xyz, dtype=torch.float, device="cuda").requires_grad_(True))
         self._features_dc = nn.Parameter(torch.tensor(features_dc, dtype=torch.float, device="cuda").transpose(1, 2).contiguous().requires_grad_(True))

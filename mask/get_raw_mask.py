@@ -12,11 +12,6 @@ from argparse import ArgumentParser
 from tqdm import tqdm
 import json
 
-# from utils.vis_utils import visualize_mask
-import sys
-sys.path.append("/home/wjlyu/Gaga_old")
-# sys.path.append("/home/wjlyu/Gaga_old/mask/detectron2")
-
 def get_n_different_colors(n: int) -> np.ndarray:
     np.random.seed(0)
     return np.random.randint(1, 256, (n, 3), dtype=np.uint8)
@@ -63,29 +58,29 @@ def get_seg_model(config: Dict, seg_method: str, device: str):
 
         return entityseg_demo
 
-    elif seg_method == "panopticseg":
-        from detectron2.config import get_cfg
-        from detectron2.projects.deeplab import add_deeplab_config
-        from mask.Mask2Former.mask2former import add_maskformer2_config
-        # from detectron2.projects.panoptic_deeplab import add_panoptic_deeplab_config
-        # from detectron2.projects.CropFormer.demo_mask2former.predictor import VisualizationDemo
-        from mask.Mask2Former.demo.predictor import VisualizationDemo
-        def setup_cfg(config):
-            # load config from file and command-line arguments
-            cfg = get_cfg()
-            add_deeplab_config(cfg)
-            add_maskformer2_config(cfg)
-            config_file = config['panopticseg_config_file']
-            cfg.merge_from_file(config_file)
-            panopticseg_checkpoint_path = ['MODEL.WEIGHTS', config['panopticseg_checkpoint_path']]
-            cfg.merge_from_list(panopticseg_checkpoint_path)
-            cfg.freeze()
-            return cfg
+    # elif seg_method == "panopticseg":
+    #     from detectron2.config import get_cfg
+    #     from detectron2.projects.deeplab import add_deeplab_config
+    #     from mask.Mask2Former.mask2former import add_maskformer2_config
+    #     # from detectron2.projects.panoptic_deeplab import add_panoptic_deeplab_config
+    #     # from detectron2.projects.CropFormer.demo_mask2former.predictor import VisualizationDemo
+    #     from mask.Mask2Former.demo.predictor import VisualizationDemo
+    #     def setup_cfg(config):
+    #         # load config from file and command-line arguments
+    #         cfg = get_cfg()
+    #         add_deeplab_config(cfg)
+    #         add_maskformer2_config(cfg)
+    #         config_file = config['panopticseg_config_file']
+    #         cfg.merge_from_file(config_file)
+    #         panopticseg_checkpoint_path = ['MODEL.WEIGHTS', config['panopticseg_checkpoint_path']]
+    #         cfg.merge_from_list(panopticseg_checkpoint_path)
+    #         cfg.freeze()
+    #         return cfg
 
-        panopticseg_cfg = setup_cfg(config)
-        panopticseg_demo = VisualizationDemo(panopticseg_cfg)
+    #     panopticseg_cfg = setup_cfg(config)
+    #     panopticseg_demo = VisualizationDemo(panopticseg_cfg)
 
-        return panopticseg_demo
+    #     return panopticseg_demo
 
     else:
         raise NotImplementedError
@@ -142,29 +137,21 @@ def get_entityseg_mask(seg_model, image, confidence_threshold):
 
     return mask_id
 
-def get_panopticseg_mask(seg_model, image, confidence_threshold):
-    predictions, visualized_output = seg_model.run_on_image(image)
-    # print("predictions panoptic_seg: ", predictions["panoptic_seg"][0].shape)
-    # print("predictions instances: ", predictions["instances"])
-    # print("predictions sem_seg: ", predictions["sem_seg"])
-    # pred_masks = predictions["instances"].pred_masks
-    # pred_scores = predictions["instances"].scores
-    # selected_indexes = (pred_scores >= confidence_threshold)
-    # selected_scores = pred_scores[selected_indexes]
-    # selected_masks  = pred_masks[selected_indexes]
-    # _, m_H, m_W = selected_masks.shape
-    # print("m_H, m_W: ", m_H, m_W)
-    # mask_id = np.zeros((m_H, m_W), dtype=np.uint8)
-    mask_id = predictions["panoptic_seg"][0].cpu().numpy().astype(np.uint8)
-    return mask_id
-
-    # # rank
-    # selected_scores, ranks = torch.sort(selected_scores)
-    # ranks = ranks + 1
-    # for index in ranks:
-    #     mask_id[(selected_masks[index-1]==1).cpu().numpy()] = int(index)
-
-    # return mask_id
+# def get_panopticseg_mask(seg_model, image, confidence_threshold):
+#     predictions, visualized_output = seg_model.run_on_image(image)
+#     # print("predictions panoptic_seg: ", predictions["panoptic_seg"][0].shape)
+#     # print("predictions instances: ", predictions["instances"])
+#     # print("predictions sem_seg: ", predictions["sem_seg"])
+#     # pred_masks = predictions["instances"].pred_masks
+#     # pred_scores = predictions["instances"].scores
+#     # selected_indexes = (pred_scores >= confidence_threshold)
+#     # selected_scores = pred_scores[selected_indexes]
+#     # selected_masks  = pred_masks[selected_indexes]
+#     # _, m_H, m_W = selected_masks.shape
+#     # print("m_H, m_W: ", m_H, m_W)
+#     # mask_id = np.zeros((m_H, m_W), dtype=np.uint8)
+#     mask_id = predictions["panoptic_seg"][0].cpu().numpy().astype(np.uint8)
+#     return mask_id
 
 if __name__ == "__main__":
     parser = ArgumentParser()
@@ -207,14 +194,15 @@ if __name__ == "__main__":
             from detectron2.data.detection_utils import read_image
             image = read_image(image_path, format="BGR")
             mask = get_entityseg_mask(seg_model, image, config["confidence_threshold"])
-        elif args.seg_method == "panopticseg":
-            from detectron2.data.detection_utils import read_image
-            image = read_image(image_path, format="BGR")
-            mask = get_panopticseg_mask(seg_model, image, config["confidence_threshold"])
+        # elif args.seg_method == "panopticseg":
+        #     from detectron2.data.detection_utils import read_image
+        #     image = read_image(image_path, format="BGR")
+        #     mask = get_panopticseg_mask(seg_model, image, config["confidence_threshold"])
         else:
             raise NotImplementedError
 
-        mask_path = os.path.join(output_folder, image_name.replace(".jpg", ".png"))
+        # mask_path = os.path.join(output_folder, image_name.replace(".jpg", ".png"))
+        mask_path = os.path.join(output_folder, image_name.split(".")[0] + ".png")
         cv2.imwrite(mask_path, mask)
 
         if args.visualize:
