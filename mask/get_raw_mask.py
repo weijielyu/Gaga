@@ -207,5 +207,5 @@ if __name__ == "__main__":
 
         if args.visualize:
             vis_mask = visualize_mask(mask)
-            vis_mask_path = os.path.join(vis_output_folder, image_name)
+            vis_mask_path = os.path.join(vis_output_folder, image_name.split(".")[0] + ".png")
             cv2.imwrite(vis_mask_path, vis_mask)
