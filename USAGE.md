@@ -79,6 +79,11 @@ python data/process.py \
 ```
 The processed ScanNet dataset will be in `{your_dataset_path}/scannet`.
 
+Since the entire ScanNet dataset is huge, we provide preprocessed (before Colmap) ScanNet dataset [here](https://drive.google.com/file/d/1WTKdeXneSMUrBrhey_aDnUCNdL3fA-Xw/view?usp=sharing). You can download it and resume by performing Colmap.
+```
+python convert.py -s {your_dataset_path}/scannet/scene0010_00 --no_gpu
+```
+
 ### LERF-Mask
 
 Please refer to [Gaussian Grouping](https://github.com/lkeab/gaussian-grouping/blob/main/docs/dataset.md) for using LERF-Mask dataset.
@@ -166,9 +171,15 @@ python render.py -m {your_output_path}/replica/office_0/sam
 
 ### Step 5 (Optional): Evaluation on Replica and ScanNet Datasets
 ```
+# Replica dataset
 python eval.py \
     --gt_masks {your_dataset_path}/replica/office_0/semantic_instance \
     --pred_masks {your_output_path}/replica/office_0/sam/test/ours_10000/objects_test
+
+# ScanNet dataset
+python eval.py \
+    --gt_masks {your_dataset_path}/scannet/scene0010_00/test/test_ins_full \
+    --pred_masks {your_output_path}/scannet/scene0010_00/sam/test/ours_10000/objects_test
 ```
 
 ## Application: Scene Editing
