@@ -166,7 +166,7 @@ python lift.py \
     --object_path sam_mask \
     --eval
 
-python render.py -m {your_output_path}/replica/office_0/sam
+python render.py -m {your_output_path}/replica/office_0/sam --render_video
 ```
 
 ### Step 5 (Optional): Evaluation on Replica and ScanNet Datasets
