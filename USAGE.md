@@ -55,7 +55,7 @@ Dropbox Link: `https://www.dropbox.com/sh/9yu1elddll00sdl/AAC-rSJdLX0C6HhKXGKMOI
 
 After downloading, unzip the file with:
 ```
-sh data/replica/unzip_replica.sh {zip_file_path.zip} {unzip_file_path}
+sh data/replica/unzip_replica.sh {zip_file_path.zip} {unzip_file_path}/Replica_Dataset
 ```
 
 Then, process the Replica dataset with:
