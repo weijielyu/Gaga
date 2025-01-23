@@ -5,7 +5,7 @@
 conda create -n gaga python=3.9 -y
 conda activate gaga
 
-conda install pytorch torchvision torchaudio cudatoolkit=11.8 -c pytorch
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 pip install plyfile tqdm scipy wandb opencv-python scikit-learn lpips torchmetrics imageio
 
 pip install submodules/diff-gaussian-rasterization
