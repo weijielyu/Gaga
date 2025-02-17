@@ -31,6 +31,9 @@ git clone https://github.com/qqlu/Entity.git
 cp -r Entity/Entityv2/CropFormer/ detectron2/detectron2/projects/
 cd detectron2/detectron2/projects/CropFormer/entity_api/PythonAPI
 make
+cd ../../../..
+cd projects/CropFormer/mask2former/modeling/pixel_decoder/ops
+sh make.sh
 ```
 
 Download model checkpoint [here](https://huggingface.co/datasets/qqlu1992/Adobe_EntitySeg/tree/main/CropFormer_model/Entity_Segmentation/CropFormer_hornet_3x).
