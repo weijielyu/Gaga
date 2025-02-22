@@ -74,47 +74,6 @@ def visualize_obj(objects):
         rgb_mask[objects == id] = colored_mask
     return rgb_mask
 
-def render_video_func_wriva(source_path, model_path, iteration, views, gaussians, pipeline, background, classifier, fps=30):
-    render_path = os.path.join(model_path, 'video', "ours_{}".format(iteration))
-    makedirs(render_path, exist_ok=True)
-    view = views[0]
-
-    render_poses = generate_ellipse_path(views)
-
-    size = (view.original_image.shape[2] * 2, int(view.original_image.shape[1] * 2 / 3))
-    fourcc = cv2.VideoWriter_fourcc(*'XVID')
-    final_video = cv2.VideoWriter(os.path.join(render_path, 'final_video.mp4'), fourcc, fps, size)
-
-    video_images_list = []
-    for idx, pose in enumerate(tqdm(render_poses, desc="Rendering progress")):
-        view.world_view_transform = torch.tensor(getWorld2View2(pose[:3, :3].T, pose[:3, 3], view.trans, view.scale)).transpose(0, 1).cuda()
-        view.full_proj_transform = (view.world_view_transform.unsqueeze(0).bmm(view.projection_matrix.unsqueeze(0))).squeeze(0)
-        view.camera_center = view.world_view_transform.inverse()[3, :3]
-        rendering = render(view, gaussians, pipeline, background)
-
-        img = torch.clamp(rendering["render"], min=0., max=1.).cpu()
-
-        rendering_obj = rendering["render_seg"]
-        logits = classifier(rendering_obj)
-        pred_obj = torch.argmax(logits,dim=0)
-        pred_obj_mask = visualize_obj(pred_obj.cpu().numpy().astype(np.uint8)) / 255.
-        pred_obj_mask = torch.clamp(torch.tensor(pred_obj_mask), min=0., max=1.).permute(2, 0, 1)
-
-        combined_img = torch.cat([img, pred_obj_mask], dim=2)
-        torchvision.utils.save_image(combined_img, os.path.join(render_path, '{0:05d}'.format(idx) + ".png"))
-        video_img = (combined_img.permute(1, 2, 0).detach().cpu().numpy() * 255.).astype(np.uint8)[..., ::-1]
-        video_images_list.append(video_img)
-
-    new_video_images_list = video_images_list[341:] + video_images_list[:40]
-
-    for video_img in new_video_images_list:
-        # print("video_img.shape: ", video_img.shape)
-        # print("size: ", size)
-        video_img = video_img[:size[1], :, :]
-        final_video.write(video_img)
-
-    final_video.release()
-
 def render_video_func(source_path, model_path, iteration, views, gaussians, pipeline, background, classifier, fps=30):
     render_path = os.path.join(model_path, 'video', "ours_{}".format(iteration))
     makedirs(render_path, exist_ok=True)
