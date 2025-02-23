@@ -36,6 +36,9 @@ def process_replica(args):
         for idx in train_ids:
             os.system("cp {}/Replica_Instance_Segmentation/{}/Sequence_1/semantic_instance/semantic_instance_{}.png {}/{}/semantic_instance/train_semantic_instance_{:04d}.png".format(input_folder, scene, idx, output_folder, scene, idx))
             os.system("cp {}/Replica_Instance_Segmentation/{}/Sequence_1/semantic_instance/vis_sem_instance_{}.png {}/{}/vis_sem_instance/train_vis_sem_instance_{:04d}.png".format(input_folder, scene, idx, output_folder, scene, idx))
+        for idx in test_ids:
+            os.system("cp {}/Replica_Instance_Segmentation/{}/Sequence_1/semantic_instance/semantic_instance_{}.png {}/{}/semantic_instance/test_semantic_instance_{:04d}.png".format(input_folder, scene, idx, output_folder, scene, idx))
+            os.system("cp {}/Replica_Instance_Segmentation/{}/Sequence_1/semantic_instance/vis_sem_instance_{}.png {}/{}/vis_sem_instance/test_vis_sem_instance_{:04d}.png".format(input_folder, scene, idx, output_folder, scene, idx))
 
         # Colmap
         print("Processing Colmap...")
