@@ -52,6 +52,10 @@ unzip 360_v2.zip -d {your_dataset_path}/mipnerf360
 The MipNeRF 360 dataset will be in `{your_dataset_path}/mipnerf360`.
 
 ### Replica
+We provide pre-processed Replica dataset [here](https://drive.google.com/file/d/1lGD0ubFeGxi-8kFgX0PD754bHdq8gBtx/view?usp=sharing).
+
+If you want to process it yourself:
+
 We use pre-rendered Replica dataset provided by [Semantic-NeRF](https://github.com/Harry-Zhi/semantic_nerf/tree/main).
 
 Dropbox Link: `https://www.dropbox.com/sh/9yu1elddll00sdl/AAC-rSJdLX0C6HhKXGKMOIija?dl=0`.
@@ -71,6 +75,10 @@ python data/process.py \
 The processed Replica dataset will be in `{your_dataset_path}/replica`.
 
 ### ScanNet
+We provide pre-processed ScanNet dataset [here](https://drive.google.com/file/d/1Etd2SJKtQqFON5StbAHeImEOqT5pp9wj/view?usp=sharing).
+
+If you want to process it yourself:
+
 Download ScanNet dataset [here](http://www.scan-net.org/).
 
 After downloading, process the ScanNet dataset with:
@@ -81,11 +89,6 @@ python data/process.py \
     --dataset scannet
 ```
 The processed ScanNet dataset will be in `{your_dataset_path}/scannet`.
-
-Since the entire ScanNet dataset is huge, we provide preprocessed (before Colmap) ScanNet dataset [here](https://drive.google.com/file/d/1WTKdeXneSMUrBrhey_aDnUCNdL3fA-Xw/view?usp=sharing). You can download it and resume by performing Colmap.
-```
-python convert.py -s {your_dataset_path}/scannet/scene0010_00 --no_gpu
-```
 
 ### LERF-Mask
 
