@@ -37,7 +37,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">
-            <i>Gaga</i> : Group Any Gaussians via 3D-aware Memory Bank
+            Gaga: Group Any Gaussians via 3D-aware Memory Bank
           </h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
@@ -50,7 +50,7 @@
               <a href="https://abhijitkundu.info/">Abhijit Kundu</a><sup>3</sup>,
             </span>
             <span class="author-block">
-              <a href="https://sites.google.com/site/yihsuantsai/">Yi-Hsuan Tsai</a><sup>3</sup>,
+              <a href="https://sites.google.com/site/yihsuantsai/">Yi-Hsuan Tsai</a><sup>4</sup>,
             </span>
             <span class="author-block">
               <a href="https://faculty.ucmerced.edu/mhyang/">Ming-Hsuan Yang</a><sup>1, 3</sup>
@@ -59,8 +59,9 @@
 
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>University of California, Merced </span>
-            <span class="author-block"><sup>2</sup>Nvidia </span>
-            <span class="author-block"><sup>3</sup>Google </span>
+            <span class="author-block"><sup>2</sup>NVIDIA Research </span>
+            <span class="author-block"><sup>3</sup>Google DeepMind </span>
+            <span class="author-block"><sup>3</sup>Atmanity Inc. </span>
           </div>
 
           <div class="column has-text-centered">
@@ -116,10 +117,6 @@
               </span>
             </div>
           </div>
-          <!-- Submission Status. -->
-          <div class="title-row">
-            <span class="title is-4 publication-venue">arXiv 2024</span>
-          </div>
         </div>
       </div>
     </div>
@@ -162,17 +159,17 @@
           <p>
             We introduce <i>Gaga</i>, a framework that <b style="color:hsl(204, 86%, 53%)">reconstructs</b> 
             and <b style="color:hsl(204, 86%, 53%)">segments</b> open-world 3D scenes 
-            by leveraging inconsistent 2D masks predicted by zero-shot segmentation models. Contrasted 
-            to prior 3D scene segmentation approaches that heavily rely on video object tracking, 
-            <i>Gaga</i> utilizes spatial information and effectively associates object masks across diverse camera 
-            poses. By eliminating the assumption of continuous view changes in training images, <i>Gaga</i> 
-            demonstrates robustness to variations in camera poses, particularly beneficial for sparsely 
-            sampled images, ensuring precise mask label consistency. Furthermore, <i>Gaga</i> accommodates 
-            2D segmentation masks from diverse sources and demonstrates robust performance with different 
-            open-world zero-shot segmentation models, significantly enhancing its versatility. 
-            Extensive qualitative and quantitative evaluations demonstrate that <i>Gaga</i> performs favorably against 
-            state-of-the-art methods, emphasizing its potential for real-world applications such as scene 
-            understanding and manipulation.
+            by leveraging inconsistent 2D masks predicted by zero-shot class-agnostic segmentation models. 
+            Contrasted to prior 3D scene segmentation approaches that rely on video object tracking or 
+            contrastive learning methods, <i>Gaga</i> utilizes spatial information and effectively associates 
+            object masks across diverse camera poses through a novel 3D-aware memory bank. By eliminating 
+            the assumption of continuous view changes in training images, <i>Gaga</i> demonstrates robustness to 
+            variations in camera poses, particularly beneficial for sparsely sampled images, ensuring 
+            precise mask label consistency. Furthermore, <i>Gaga</i> accommodates 2D segmentation masks from 
+            diverse sources and demonstrates robust performance with different open-world zero-shot 
+            class-agnostic segmentation models, significantly enhancing its versatility. Extensive qualitative 
+            and quantitative evaluations demonstrate that <i>Gaga</i> performs favorably against state-of-the-art methods, 
+            emphasizing its potential for real-world applications such as 3D scene understanding and manipulation.
           </p>
         </div>
       </div>
@@ -210,17 +207,14 @@
             </div>
           </div>
           <p>
-            <strong>Overview of <i>Gaga</i>.</strong> <i>Gaga</i> reconstructs 3D scenes with Gaussian Splatting and
-            adopts an open-world model to generate 2D segmentation masks. To eliminate the 2D
-            mask label inconsistency, we design the <b style="color:hsl(204, 86%, 53%)">3D-aware mask association</b> process, 
-            where a 3D-aware memory bank is employed to 
-            assign a consistent group ID across different views to
-            each 2D mask based on the 3D Gaussians projected to that mask. Specifically,
-            we find the corresponding Gaussians projected to each 2D mask and assign the mask
-            with the group ID in the memory bank with the maximum overlapped Gaussians.
-            After the 3D-aware mask association process, we use masks with multi-view
-            consistent group IDs as pseudo labels to train an identity encoding on each 3D Gaussian
-            for segmentation rendering.
+            <strong>Overview of <i>Gaga</i>.</strong> <i>Gaga</i> reconstructs 3D scenes using Gaussian Splatting and 
+            adopts any open-world model to generate 2D segmentation masks. To eliminate the 2D mask label inconsistency, 
+            we design a mask association process, where a <b style="color:hsl(204, 86%, 53%)">3D-aware memory bank</b> is 
+            employed to assign a consistent group ID across different views to each 2D mask based on the 3D Gaussians 
+            projected to that mask. Specifically, we find the corresponding Gaussians projected to 2D mask and assign 
+            the mask with the group ID in the memory bank with the maximum overlapped Gaussians After 3D-aware mask association 
+            process, we use masks with multi-view consistent group IDs as pseudo labels to train an identity encoding on each 
+            3D Gaussian for segmentation rendering.
           </p>
         </div>
       </div>
